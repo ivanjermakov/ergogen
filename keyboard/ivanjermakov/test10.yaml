@@ -3,15 +3,6 @@ points:
     bind: 1
     padding: cy
     footprints:
-      choc_hotswap:
-        type: choc
-        nets:
-          from: =column_net
-          to: GND
-        params:
-          keycaps: true
-          reverse: true
-          hotswap: true
       choc:
         type: choc
         anchor:
@@ -22,6 +13,16 @@ points:
         params:
           keycaps: true
           reverse: true
+      choc_hotswap:
+        type: choc
+        anchor:
+          rotate: 180
+        nets:
+          from: =column_net
+          to: GND
+        params:
+          reverse: true
+          hotswap: true
   zones:
     main:
       rows:
@@ -30,28 +31,29 @@ points:
         pinky:
           rows:
             home:
-              column_net: P1
+              column_net: P10
         ring:
-          stagger: .75*cx
+          stagger: 14
           rows:
             home:
-              column_net: P2
+              column_net: P14
         middle:
-          stagger: .5*cx
+          stagger: 5
           rows:
             home:
-              column_net: P3
+              column_net: P15
+              bind: [1, 1, 2, 1]
         index:
-          stagger: -.5*cx
+          stagger: 0
           rows:
             home:
-              column_net: P4
+              column_net: P18
+              bind: [1, 1, 2, 1]
         thumb:
           rows:
             home:
-              column_net: P5
-              rotate: -20
-              shift: [ -.5*cx, -1.75*cx ]
+              column_net: P1
+              shift: [ -10, -38 ]
 outlines:
   exports:
     raw:
@@ -60,14 +62,14 @@ outlines:
         size: [ 1cx , 1cx ]
       - type: polygon
         points:
-          - ref: main_pinky_home
-            shift: [ -.5*cx-1, -.5*cx-1 ]
-          - ref: main_ring_home
-          - ref: main_middle_home
-          - ref: main_index_home
-            shift: [ .5*cx+1, -.5*cx-1 ]
-          - ref: main_thumb_home
-            shift: [ .5*cx+1, -.5*cx-1 ]
+        - ref: main_pinky_home
+          shift: [67, .5*cx]
+        - ref: main_pinky_home
+          shift: [67, -.5*cx-1]
+        - ref: main_pinky_home
+          shift: [-.5*cx, -.5*cx-1]
+        - ref: main_pinky_home
+          shift: [-.5*cx, .5*cx]
     cutout:
       - type: outline
         name: raw
@@ -81,8 +83,9 @@ pcbs:
       promicro:
         type: promicro
         anchor:
-          ref: main_pinky_home
-          shift: [ 2*cx, -.4*cx ]
+          ref: main_index_home
+          shift: [ -10, -19 ]
+          rotate: 180
         params:
           orientation: down
 #      pcm12:
