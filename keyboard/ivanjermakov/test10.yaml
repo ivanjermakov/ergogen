@@ -1,0 +1,145 @@
+points:
+  key:
+    bind: 1
+    padding: cy
+    footprints:
+      choc_hotswap:
+        type: choc
+        nets:
+          from: =column_net
+          to: GND
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+      choc:
+        type: choc
+        anchor:
+          rotate: 180
+        nets:
+          from: =column_net
+          to: GND
+        params:
+          keycaps: true
+          reverse: true
+  zones:
+    main:
+      rows:
+        home:
+      columns:
+        pinky:
+          rows:
+            home:
+              column_net: P1
+        ring:
+          stagger: .75*cx
+          rows:
+            home:
+              column_net: P2
+        middle:
+          stagger: .5*cx
+          rows:
+            home:
+              column_net: P3
+        index:
+          stagger: -.5*cx
+          rows:
+            home:
+              column_net: P4
+        thumb:
+          rows:
+            home:
+              column_net: P5
+              rotate: -20
+              shift: [ -.5*cx, -1.75*cx ]
+outlines:
+  exports:
+    raw:
+      - type: keys
+        side: left
+        size: [ 1cx , 1cx ]
+      - type: polygon
+        points:
+          - ref: main_pinky_home
+            shift: [ -.5*cx-1, -.5*cx-1 ]
+          - ref: main_ring_home
+          - ref: main_middle_home
+          - ref: main_index_home
+            shift: [ .5*cx+1, -.5*cx-1 ]
+          - ref: main_thumb_home
+            shift: [ .5*cx+1, -.5*cx-1 ]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 3
+pcbs:
+  test10:
+    outlines:
+      key:
+        outline: cutout
+    footprints:
+      promicro:
+        type: promicro
+        anchor:
+          ref: main_pinky_home
+          shift: [ 2*cx, -.4*cx ]
+        params:
+          orientation: down
+#      pcm12:
+#        type: pcm12
+#        anchor:
+#          ref: main_pinky_home
+#          shift: [ 16.5, 6.5 ]
+#          rotate: 180
+#        nets:
+#          from: pos
+#          to: RAW
+#        params:
+#          reverse: true
+#      via3:
+#        type: via
+#        anchor:
+#          ref: main_pinky_home
+#          shift: [ 16,3 ]
+#        nets:
+#          net: RAW
+#      via4:
+#        type: via
+#        anchor:
+#          ref: main_pinky_home
+#          shift: [ 18,3 ]
+#        nets:
+#          net: pos
+#      via5:
+#        type: via
+#        anchor:
+#          ref: main_pinky_home
+#          shift: [ 23,6.5 ]
+#        nets:
+#          net: GND
+#      via6:
+#        type: via
+#        anchor:
+#          ref: main_pinky_home
+#          shift: [ 25,6.5 ]
+#        nets:
+#          net: RST
+#      b3u1000p:
+#        type: b3u1000p
+#        nets:
+#          r1: RST
+#          r2: GND
+#        anchor:
+#          ref: main_pinky_home
+#          shift: [ 24.5, 9 ]
+#          rotate: 0
+#        params:
+#          reverse: true
+#      bat:
+#        type: bat
+#        nets:
+#          neg: GND
+#        anchor:
+#          ref: main_pinky_home
+#          shift: [ 0.2 , 9 ]
+#          rotate: 90

@@ -10,6 +10,8 @@
     "main": "./src/ergogen.js",
     "bin": "./src/cli.js",
     "scripts": {
+        "clean": "rm -r output",
+        "gen": "node src/cli.js",
         "build": "rollup -c",
         "test": "mocha -r test/helpers/register test/index.js",
         "coverage": "nyc --reporter=html --reporter=text npm test"
